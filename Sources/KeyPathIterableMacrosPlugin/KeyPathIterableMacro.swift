@@ -35,7 +35,7 @@ public struct KeyPathIterableMacro: MemberMacro {
             .map { "\\.\($0)" }
             .joined(separator: ", ")
 
-        let codeBlockItemList = try VariableDeclSyntax("static var allKeyPath: [PartialKeyPath<\(raw: namespace)>]") {
+        let codeBlockItemList = try VariableDeclSyntax("static var allKeyPaths: [PartialKeyPath<\(raw: namespace)>]") {
             StmtSyntax("[\(raw: keyPathPairs)]")
         }
         .formatted()

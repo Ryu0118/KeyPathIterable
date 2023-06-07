@@ -1,32 +1,32 @@
 import XCTest
-@testable import KeyPathIterable
+import KeyPathIterable
 
 final class KeyPathIterableTests: XCTestCase {
     func testStructKeyPathIterable() throws {
-        XCTAssertEqual(StructHoge.allKeyPath, [\.hoge, \.fuga, \.foo])
+        XCTAssertEqual(StructHoge.allKeyPaths, [\.hoge, \.fuga, \.foo])
 
-        let count = StructHoge.allKeyPath.compactMap { $0 as? WritableKeyPath<StructHoge, Int> }.count
+        let count = StructHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<StructHoge, Int> }.count
         XCTAssertEqual(count, 2)
     }
 
     func testEnumKeyPathIterable() throws {
-        XCTAssertEqual(EnumHoge.allKeyPath, [\.hoge, \.fuga])
+        XCTAssertEqual(EnumHoge.allKeyPaths, [\.hoge, \.fuga])
 
-        let count = EnumHoge.allKeyPath.compactMap { $0 as? WritableKeyPath<EnumHoge, Int> }.count
+        let count = EnumHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<EnumHoge, Int> }.count
         XCTAssertEqual(count, 0)
     }
 
     func testClassKeyPathIterable() throws {
-        XCTAssertEqual(ClassHoge.allKeyPath, [\.hoge, \.fuga, \.foo])
+        XCTAssertEqual(ClassHoge.allKeyPaths, [\.hoge, \.fuga, \.foo])
 
-        let count = ClassHoge.allKeyPath.compactMap { $0 as? WritableKeyPath<ClassHoge, Int> }.count
+        let count = ClassHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<ClassHoge, Int> }.count
         XCTAssertEqual(count, 2)
     }
 
     func testActorKeyPathIterable() throws {
-        XCTAssertEqual(ActorHoge.allKeyPath, [\.hoge])
+        XCTAssertEqual(ActorHoge.allKeyPaths, [\.hoge])
 
-        let count = ActorHoge.allKeyPath.compactMap { $0 as? WritableKeyPath<ActorHoge, Int> }.count
+        let count = ActorHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<ActorHoge, Int> }.count
         XCTAssertEqual(count, 0)
     }
 

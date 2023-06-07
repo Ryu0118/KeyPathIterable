@@ -1,3 +1,3 @@
 public protocol KeyPathIterable {
-    static var allKeyPath: [PartialKeyPath<Self>] { get }
+    static var allKeyPaths: [PartialKeyPath<Self>] { get }
 }

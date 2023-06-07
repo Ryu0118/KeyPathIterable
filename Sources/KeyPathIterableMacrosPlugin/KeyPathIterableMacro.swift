@@ -22,7 +22,7 @@ public struct KeyPathIterableMacro: MemberMacro {
 
         let namespace = decl.identifier.text
 
-        let keyPathPairs = declaration.memberBlock.members
+        let keyPaths = declaration.memberBlock.members
             .compactMap { $0.decl.as(VariableDeclSyntax.self)}
             .filter {
                 if decl.is(ActorDeclSyntax.self) {
@@ -36,7 +36,7 @@ public struct KeyPathIterableMacro: MemberMacro {
             .joined(separator: ", ")
 
         let codeBlockItemList = try VariableDeclSyntax("static var allKeyPaths: [PartialKeyPath<\(raw: namespace)>]") {
-            StmtSyntax("[\(raw: keyPathPairs)]")
+            StmtSyntax("[\(raw: keyPaths)]")
         }
         .formatted()
         .description

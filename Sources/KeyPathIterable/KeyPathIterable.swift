@@ -1,6 +1,7 @@
 public protocol KeyPathIterable {
     static var allKeyPaths: [PartialKeyPath<Self>] { get }
     static var allAnyKeyPaths: [AnyKeyPath] { get }
+    static var additionalKeyPaths: [PartialKeyPath<Self>] { get }
 
     var allKeyPaths: [PartialKeyPath<Self>] { get }
     var allAnyKeyPaths: [AnyKeyPath] { get }
@@ -39,5 +40,9 @@ public extension KeyPathIterable {
 
     var recursivelyAllAnyKeyPaths: [AnyKeyPath] {
         recursivelyAllKeyPaths.map { $0 as AnyKeyPath }
+    }
+
+    static var additionalKeyPaths: [PartialKeyPath<Self>] {
+        []
     }
 }

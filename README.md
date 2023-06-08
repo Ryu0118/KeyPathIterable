@@ -39,3 +39,22 @@ let parents = Parents(
 
 parents.recursivelyAllKeyPaths // [\.mother, \.mother.name, \.mother.age, \.father, \.father.name, \.father.age]
 ```
+
+## Known Issue
+Computed properties added by extension are not included in `allKeyPaths` due to macro specifications.
+You need to add them manually in this way.
+```Swift
+@KeyPathIterable
+struct Hoge {
+  let hoge: String
+}
+
+extension Hoge {
+  var fuga: Int { 0 }
+  static var additionalKeyPaths: [PartialKeyPath<Self>] {
+    [\.fuga]
+  }
+}
+
+Hoge.allKeyPaths // [\.hoge, \.fuga]
+```

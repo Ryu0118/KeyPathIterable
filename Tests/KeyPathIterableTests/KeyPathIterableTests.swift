@@ -30,6 +30,22 @@ final class KeyPathIterableTests: XCTestCase {
         XCTAssertEqual(count, 0)
     }
 
+    func testRecursivelyAllKeyPaths() throws {
+        let recursivelyAllKeyPaths = Set(NestedStruct(hoge: .init(), fuga: .init()).recursivelyAllKeyPaths)
+
+        XCTAssertEqual(
+            recursivelyAllKeyPaths,
+            [
+                 \.hoge,
+                 \.hoge.hoge,
+                 \.hoge.fuga,
+                 \.hoge.foo,
+                 \.fuga,
+                 \.fuga.fuga,
+                 \.fuga.hoge
+            ]
+        )
+    }
 
     @KeyPathIterable
     struct StructHoge {
@@ -40,8 +56,14 @@ final class KeyPathIterableTests: XCTestCase {
 
     @KeyPathIterable
     enum EnumHoge {
+        case c1
+
         var hoge: Int { 1 }
         var fuga: Int { 2 }
+
+        init() {
+            self = .c1
+        }
     }
 
     @KeyPathIterable
@@ -57,5 +79,11 @@ final class KeyPathIterableTests: XCTestCase {
     actor ActorHoge {
         nonisolated var hoge: Int { 1 }
         var fuga = 2
+    }
+
+    @KeyPathIterable
+    struct NestedStruct {
+        let hoge: StructHoge
+        let fuga: EnumHoge
     }
 }

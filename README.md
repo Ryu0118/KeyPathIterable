@@ -3,7 +3,7 @@ Swift macro that can get KeyPath of all properties of struct, class, enum or mac
 
 ## Installation
 ```Swift
-.package(url: "https://github.com/Ryu0118/KeyPathIterable.git", exact: 0.1.0)
+.package(url: "https://github.com/Ryu0118/KeyPathIterable.git", exact: "0.1.0")
 ```
 
 ## Usage

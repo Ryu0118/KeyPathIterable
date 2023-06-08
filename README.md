@@ -1,5 +1,5 @@
 # KeyPathIterable
-Swift macro that can get KeyPath of all properties of struct, class, enum or macro
+Swift macro that can get KeyPath of all properties of struct, class, enum or actor
 
 ## Installation
 ```Swift

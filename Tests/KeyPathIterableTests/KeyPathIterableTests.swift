@@ -8,28 +8,28 @@ final class KeyPathIterableTests: XCTestCase {
         let count = StructHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<StructHoge, Int> }.count
         XCTAssertEqual(count, 2)
     }
-    
+
     func testEnumKeyPathIterable() throws {
         XCTAssertEqual(EnumHoge.allKeyPaths, [\.hoge, \.fuga])
         
         let count = EnumHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<EnumHoge, Int> }.count
         XCTAssertEqual(count, 0)
     }
-    
+
     func testClassKeyPathIterable() throws {
         XCTAssertEqual(ClassHoge.allKeyPaths, [\.hoge, \.fuga, \.foo])
         
         let count = ClassHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<ClassHoge, Int> }.count
         XCTAssertEqual(count, 2)
     }
-    
+
     func testActorKeyPathIterable() throws {
         XCTAssertEqual(ActorHoge.allKeyPaths, [\.hoge])
         
         let count = ActorHoge.allKeyPaths.compactMap { $0 as? WritableKeyPath<ActorHoge, Int> }.count
         XCTAssertEqual(count, 0)
     }
-    
+
     func testRecursivelyAllKeyPaths() throws {
         let recursivelyAllKeyPaths = Set(NestedStruct(hoge: .init(), fuga: .init()).recursivelyAllKeyPaths)
         
